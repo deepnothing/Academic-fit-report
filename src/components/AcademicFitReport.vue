@@ -18,21 +18,7 @@ const athleteInfo: Info[] = [
   { label: 'Desired Major:', value: athlete.value.major },
 ];
 
-const handleInput: Function = (event: KeyboardEvent) => {
-  console.log(event)
-  const inputElement = event.target as HTMLInputElement | null;
-  if (inputElement) {
-    // Only alphabets and spaces are allowed
-    const validInputPattern = /^[A-Za-z\s]+$/;
-    if (validInputPattern.test(event.key)) {
-      editName(inputElement.value);
-    } else {
-      event.preventDefault();
-    }
-  }
-};
-
-const initialsColorScheme = [
+const placeholderColorScheme = [
   '#f1603c',
   '#6082fa',
   '#827cb8',
@@ -46,6 +32,22 @@ const colorIndex = computed(() => {
   return Math.abs(charIndex % 6);
 });
 
+const handleInput: Function = (event: KeyboardEvent) => {
+  const inputElement = event.target as HTMLInputElement | null;
+  if (inputElement) {
+    const deleteKey = event.key === 'Backspace' || event.key === 'Delete'
+    const isDeleteLast = inputElement.value.length === 1 && deleteKey;
+    const isDeleteWhole = inputElement.selectionStart === 0 && inputElement.selectionEnd === inputElement.value.length && deleteKey;
+    // Only alphabets and spaces are allowed
+    const validInputPattern = /^[A-Za-z\s]+$/;
+    if (validInputPattern.test(event.key) && !isDeleteLast && !isDeleteWhole) {
+      editName(inputElement.value);
+    } else {
+      event.preventDefault();
+    }
+  }
+};
+
 const imageBubbleStyles = 'text-white rounded-full flex justify-center items-center'
 
 </script>
@@ -55,11 +57,11 @@ const imageBubbleStyles = 'text-white rounded-full flex justify-center items-cen
     <div class="flex flex-row">
       <div>
         <img v-if="!isEditing && athlete.profile_image" :src="athlete.profile_image" :class="imageBubbleStyles" />
-        <div v-else :style="{ backgroundColor: initialsColorScheme[colorIndex] }" :class="imageBubbleStyles">
+        <div v-else :style="{ backgroundColor: placeholderColorScheme[colorIndex] }" :class="imageBubbleStyles">
           {{ getInitials(athlete.name) }} </div>
       </div>
       <div class="info">
-        <input :value="athlete.name" @keydown="(e) => handleInput(e)" class="outline-none caret-primary text-primary" />
+        <input v-model="athlete.name" @keydown="(e) => handleInput(e)" class="outline-none caret-primary text-primary" />
         <ul>
           <li v-for=" item  in  athleteInfo " :key="item.label">
             <label>{{ item.label }}</label>
