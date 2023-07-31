@@ -3,7 +3,7 @@ import { useAthleteStore } from '../stores/athlete';
 import Column from '../types/column';
 import Row from './Row.vue';
 
-const athlete = useAthleteStore().athlete;
+const { athlete } = useAthleteStore();
 
 const columns: Column[] = [
     { head: "School Name" },
@@ -33,7 +33,7 @@ const columns: Column[] = [
             </tr>
         </thead>
         <tbody>
-            <Row v-for="(report, index) in  athlete.report " :key="index" :class="index % 2 === 0 ? '' : 'bg-[#E9F0FF]'"
+            <Row v-for="(report, index) in  athlete.report " :key="index" :class="index % 2 === 0 ? '' : 'bg-secondary'"
                 :report="report" :athleteGPA="athlete.gpa" />
         </tbody>
     </table>

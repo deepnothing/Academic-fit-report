@@ -5,7 +5,7 @@ import Footer from "./components/Footer.vue";
 </script>
 
 <template>
-  <div class="border-t-[15px] border-b-[15px] border-[#01B4FE]">
+  <div class="border-t-[15px] border-b-[15px] border-primary">
     <AcademicFitReport />
     <Table />
     <Footer />
