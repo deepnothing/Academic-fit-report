@@ -11,7 +11,7 @@ const { report, athleteGPA } = defineProps<{
 
 <template>
     <tr>
-        <td>{{ report.school }}</td>
+        <td class="sticky left-0">{{ report.school }}</td>
         <td>{{ report.division }}</td>
         <td>{{ report.conference }}</td>
         <td>{{ report.ranking }}</td>

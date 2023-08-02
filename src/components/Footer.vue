@@ -1,7 +1,7 @@
 
 <template>
     <footer>
-        <div>
+        <div class=" pt-32 pb-6 text-sm">
             <div>
                 *Rankings for Division I schools based on NCAA data <a target="_blank"
                     href="https://ncaa.com">(www.ncaa.com)</a> and rankings for Division II & III

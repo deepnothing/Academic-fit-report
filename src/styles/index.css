@@ -3,6 +3,26 @@
 @tailwind utilities;
 
 :root {
-	--primary: #01B4FE;
-    --secondary: #E9F0FF;
+  --primary: #01b4fe;
+  --secondary: #e9f0ff;
+  --dark:#232223;
+}
+
+body{
+    @apply text-dark
+}
+
+table {
+  @apply text-[11px] table-fixed;
+}
+
+th {
+  @apply whitespace-nowrap;
+}
+tr {
+  @apply h-7 whitespace-nowrap;
+}
+
+td:not(:first-child):not(:nth-child(3)) {
+  @apply text-center;
 }
