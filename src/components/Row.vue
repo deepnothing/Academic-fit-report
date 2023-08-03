@@ -3,15 +3,19 @@ import { Report } from '../types/athlete';
 import TDColor from './TDColor.vue';
 import { addZeroes, formatScores } from '../utils/utils'
 
-const { report, athleteGPA } = defineProps<{
+const { report, athleteGPA, index } = defineProps<{
     report: Report,
     athleteGPA: number,
+    index: number
 }>();
+const backgroundColor = index % 2 === 0 ? 'bg-white' : 'bg-secondary'
 </script>
 
 <template>
-    <tr>
-        <td class="sticky left-0">{{ report.school }}</td>
+    <tr :class="backgroundColor">
+        <td class="sticky left-0 overflow-clip" :class="backgroundColor">
+            {{ report.school }}
+        </td>
         <td>{{ report.division }}</td>
         <td>{{ report.conference }}</td>
         <td>{{ report.ranking }}</td>

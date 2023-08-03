@@ -5,11 +5,11 @@
 :root {
   --primary: #01b4fe;
   --secondary: #e9f0ff;
-  --dark:#232223;
+  --dark: #232223;
 }
 
-body{
-    @apply text-dark
+body {
+  @apply text-dark font-roboto;
 }
 
 table {
@@ -17,7 +17,8 @@ table {
 }
 
 th {
-  @apply whitespace-nowrap;
+  height: 5px;
+  @apply px-3 whitespace-nowrap;
 }
 tr {
   @apply h-7 whitespace-nowrap;

@@ -26,7 +26,7 @@ export interface Athlete {
   club: { name: string };
   high_school: { name: string };
   birthday: string;
-  profile_image: string;
+  profile_image?: string;
   email: string;
   report: Report[];
 }

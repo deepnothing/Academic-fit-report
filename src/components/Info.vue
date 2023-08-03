@@ -48,20 +48,22 @@ const handleInput: Function = (event: KeyboardEvent) => {
   }
 };
 
-
 </script>
 
 <template>
   <div class="flex flex-col-reverse lg:flex-row justify-between py-14">
-    <div class="flex flex-row justify-center">
+    <div class="flex  justify-center sm:flex-row flex-col items-center">
       <div
         class="bg-cover bg-no-repeat bg-center h-32 w-32 flex items-center justify-center text-6xl text-white rounded-full"
-        :style="{ backgroundColor: isEditing ? placeholderColorScheme[colorIndex] : '', backgroundImage: !isEditing ? `url(${athlete.profile_image})` : '' }">
-        {{ isEditing ? getInitials(athlete.name) : '' }}
+        :style="{
+          backgroundColor: (isEditing || !athlete.profile_image) ? placeholderColorScheme[colorIndex] : '',
+          backgroundImage: !isEditing ? `url(${athlete.profile_image})` : ''
+        }">
+        {{ (isEditing || !athlete.profile_image) ? getInitials(athlete.name) : '' }}
       </div>
       <div class="mx-6 flex flex-col justify-center">
         <input v-model="athlete.name" @keydown="(e) => handleInput(e)"
-          class="outline-none caret-primary text-primary font-bold text-xl" />
+          class="outline-none caret-primary text-primary font-bold text-xl text-center sm:text-left sm:py-0 py-3" />
         <ul class="grid md:grid-cols-2 grid-cols-1">
           <li v-for="item in athleteInfo" :key="item.label">
             <label class="font-bold">{{ item.label }}</label>
