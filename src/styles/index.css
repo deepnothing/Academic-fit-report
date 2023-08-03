@@ -13,17 +13,28 @@ body {
 }
 
 table {
-  @apply text-[11px] table-fixed;
+  @apply text-[11px] table table-auto w-full overflow-x-auto;
+}
+
+thead {
+  @apply bg-dark text-white;
 }
 
 th {
-  height: 5px;
-  @apply px-3 whitespace-nowrap;
+  @apply px-3 whitespace-nowrap leading-3;
 }
-tr {
+thead tr {
+  @apply h-5 whitespace-nowrap;
+}
+
+tbody tr {
   @apply h-7 whitespace-nowrap;
 }
 
 td:not(:first-child):not(:nth-child(3)) {
   @apply text-center;
+}
+
+input {
+  @apply outline-none caret-primary text-primary font-bold text-xl text-center sm:text-left sm:py-0 py-3;
 }

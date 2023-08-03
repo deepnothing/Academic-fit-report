@@ -62,8 +62,7 @@ const handleInput: Function = (event: KeyboardEvent) => {
         {{ (isEditing || !athlete.profile_image) ? getInitials(athlete.name) : '' }}
       </div>
       <div class="mx-6 flex flex-col justify-center">
-        <input v-model="athlete.name" @keydown="(e) => handleInput(e)"
-          class="outline-none caret-primary text-primary font-bold text-xl text-center sm:text-left sm:py-0 py-3" />
+        <input v-model="athlete.name" @keydown="(e) => handleInput(e)" />
         <ul class="grid md:grid-cols-2 grid-cols-1">
           <li v-for="item in athleteInfo" :key="item.label">
             <label class="font-bold">{{ item.label }}</label>

@@ -9,10 +9,10 @@ const gpaPercents = ['Min', '25%', '50%', '75%', 'Max'];
 
 <template>
     <div class="table-container overflow-x-auto">
-        <table class="table table-auto w-full overflow-x-auto" role="table" aria-label="Athlete Report">
-            <thead class="bg-dark text-white">
+        <table role="table" aria-label="Athlete Report">
+            <thead>
                 <tr>
-                    <th class="sticky left-0" scope="col" rowspan="2">School Name</th>
+                    <th class="sticky left-0 bg-dark" scope="col" rowspan="2">School Name</th>
                     <th scope="col" rowspan="2">Athletic Div</th>
                     <th scope="col" rowspan="2">Conference</th>
                     <th scope="col" rowspan="2">
@@ -26,7 +26,7 @@ const gpaPercents = ['Min', '25%', '50%', '75%', 'Max'];
                     <th scope="col" rowspan="2">ACT Composite*** <br> 25%-75%</th>
                 </tr>
                 <tr>
-                    <th v-for="(gpa, index) in gpaPercents" :key="index" scope="col" class="px-1 align-bottom">{{ gpa }}
+                    <th v-for="(gpa, index) in gpaPercents" :key="index" scope="col" class="px-1">{{ gpa }}
                     </th>
                 </tr>
             </thead>
