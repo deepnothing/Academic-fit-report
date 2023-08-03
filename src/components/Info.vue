@@ -2,11 +2,11 @@
 import { useAthleteStore } from '../stores/athlete';
 import { storeToRefs } from 'pinia';
 import Info from "../types/info";
+import Input from './Input.vue';
 import { computed } from 'vue';
-import { getInitials, getFirstLetterOfLastName } from '../utils/utils'
+import { getInitials, getFirstLetterOfLastName } from '../utils/utils';
 
 const athleteStore = useAthleteStore();
-const { editName } = athleteStore;
 const { isEditing, athlete } = storeToRefs(athleteStore);
 
 const athleteInfo: Info[] = [
@@ -31,23 +31,6 @@ const colorIndex = computed(() => {
   const charIndex = getFirstLetterOfLastName(athlete.value.name).charCodeAt(0) - 65;
   return Math.abs(charIndex % 6);
 });
-
-const handleInput: Function = (event: KeyboardEvent) => {
-  const inputElement = event.target as HTMLInputElement | null;
-  if (inputElement) {
-    const deleteKey = event.key === 'Backspace' || event.key === 'Delete'
-    const isDeleteLast = inputElement.value.length === 1 && deleteKey;
-    const isDeleteWhole = inputElement.selectionStart === 0 && inputElement.selectionEnd === inputElement.value.length && deleteKey;
-    // Only alphabets and spaces are allowed
-    const validInputPattern = /^[A-Za-z\s]+$/;
-    if (validInputPattern.test(event.key) && !isDeleteLast && !isDeleteWhole) {
-      editName(inputElement.value);
-    } else {
-      event.preventDefault();
-    }
-  }
-};
-
 </script>
 
 <template>
@@ -62,7 +45,7 @@ const handleInput: Function = (event: KeyboardEvent) => {
         {{ (isEditing || !athlete.profile_image) ? getInitials(athlete.name) : '' }}
       </div>
       <div class="mx-6 flex flex-col justify-center">
-        <input v-model="athlete.name" @keydown="(e) => handleInput(e)" />
+        <Input />
         <ul class="grid md:grid-cols-2 grid-cols-1">
           <li v-for="item in athleteInfo" :key="item.label">
             <label class="font-bold">{{ item.label }}</label>
